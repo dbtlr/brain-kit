@@ -1,0 +1,17 @@
+# brain-kit minimal-mode config
+[vault]
+root = "."
+workspaces_dir = "Workspaces"
+notes_dir = "Notes"
+logs_dir = "Log"
+
+[partner_model]
+path = "System/partner_model.md"
+log_path = "System/logs/partner_model_log.jsonl"
+profile = "default"
+
+[persona]
+path = "Notes/me.md"
+
+[mode]
+strict = false

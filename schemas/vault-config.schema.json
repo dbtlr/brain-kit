@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "brain-kit vault config",
+  "type": "object",
+  "required": ["vault"],
+  "properties": {
+    "vault": {
+      "type": "object",
+      "required": ["root"],
+      "properties": {
+        "root": { "type": "string", "description": "Vault root, relative to .vault.toml location" },
+        "workspaces_dir": { "type": "string", "default": "Workspaces" },
+        "notes_dir": { "type": "string", "default": "Notes" },
+        "logs_dir": { "type": "string", "default": "Log" },
+        "journal_dir": { "type": "string", "default": "Journal" },
+        "system_dir": { "type": "string", "default": "System" }
+      }
+    },
+    "partner_model": {
+      "type": "object",
+      "properties": {
+        "path": { "type": "string", "description": "Path to consolidated model, relative to vault root" },
+        "log_path": { "type": "string", "description": "Path to JSONL log, relative to vault root" },
+        "profile": { "type": "string", "description": "Profile name (work, personal, etc.)" }
+      }
+    },
+    "mode": {
+      "type": "object",
+      "properties": {
+        "strict": { "type": "boolean", "default": false, "description": "Enforce typed-note ontology" }
+      }
+    },
+    "persona": {
+      "type": "object",
+      "properties": {
+        "path": { "type": "string", "description": "Path to self-persona note, relative to vault root" }
+      }
+    }
+  }
+}

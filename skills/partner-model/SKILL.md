@@ -38,9 +38,11 @@ Create the directory structure if it doesn't exist.
 
 **If no writable path can be determined, do nothing.** This skill is inactive without a configured location.
 
-## MANDATORY: Load Model First
+## Auto-load via SessionStart hook
 
-On session start, before doing ANYTHING else, read the consolidated model file. This informs your behavior for the entire session. Do not skip this step.
+The plugin's `SessionStart` hook (`hooks/session-start.sh`) reads the model file at session start and outputs it as initial context, wrapped in `<partner-model>` tags. **You do not need to load the file manually** — it is already in your session context if a vault config or `$PARTNER_MODEL_PATH` was reachable.
+
+If you are running in a context where the hook did not fire (manual invocation outside a brain-kit-aware session, or `$PARTNER_MODEL_PATH` was set after the hook ran), read the consolidated model file yourself using the resolved path above.
 
 ## Persona Awareness
 

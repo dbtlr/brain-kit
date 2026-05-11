@@ -1,8 +1,0 @@
-{
-  "name": "brain-kit",
-  "version": "0.1.0",
-  "description": "Portable second-brain plugin: partner-model, mini-vault workspaces, dev-logs. Structured-vault-compatible.",
-  "author": "Drew Butler <hi@dbtlr.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/dbtlr/brain-kit"
-}

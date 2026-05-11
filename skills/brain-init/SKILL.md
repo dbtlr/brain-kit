@@ -75,17 +75,18 @@ This value is substituted into the vault config as the partner model profile ide
 
 ## Step 5: Persona seed
 
-Ask the user how they want to seed the partner model:
+Ask the user how they want to populate the **persona file** (`me.md`) — the declared-facts-about-you note that the partner-model bootstrap later derives observations from:
 
-> Seed the partner model now? Choices:
-> - **From persona file** (recommended) — point to an existing persona note (you'll be asked for path). The bootstrap infers initial observations from the declared facts.
-> - **Skip** — initialize an empty model and let observations accumulate through normal sessions.
+> Set up your persona? Choices:
+> - **Build new via interview** (recommended) — short conversational interview (~5 questions about who you are, what you're working on, who you work with, what you're growing in). The answers populate `me.md` directly.
+> - **Use an existing persona file** — point to a note you've already written elsewhere; we'll copy or symlink it into place.
+> - **Skip** — no persona file. The partner model will start empty and populate via real session observations only.
 
-Default: **From persona file** if the user mentions they have one, else **Skip**.
+Default: **Build new via interview**.
 
-The partner model is observation-driven; there is no interview. See `skills/partner-model/references/seed-sources.md` for the sourcing model.
+The interview builds the **persona layer** (declared facts about the user). The partner-model bootstrap later reads the persona and derives **observations** from it — that's a separate step in Step 9. See `references/persona-interview.md` for the interview questions and `skills/partner-model/references/seed-sources.md` for how the persona becomes seed observations.
 
-Record the user's choice. Do not take action yet — persona seeding happens in Step 9.
+Record the user's choice. Do not take action yet — persona work happens in Step 9.
 
 ---
 
@@ -147,18 +148,30 @@ Skip this step entirely for minimal mode.
 
 Take action based on the choice from Step 5:
 
-**From persona file:**
-Ask the user for the path to their existing persona note. Copy or symlink it to `${vault_root}/Notes/me.md` (or wherever `persona.path` resolves in the vault config). Then invoke `/partner-model bootstrap` — it will detect the persona and derive observations from it.
+**Build new via interview:**
+
+Conduct the persona interview per `references/persona-interview.md`. Ask the questions one at a time via `AskUserQuestion` (conversational, not form-like). Assemble the answers into a persona file at the path resolved by `persona.path` in `.vault.toml` (default `${vault_root}/Notes/me.md`).
+
+For **strict mode**, the persona file uses the typed-note frontmatter from `${vault_root}/${system_dir}/Templates/_persona.md` (`type: note, kind: persona, title:`, etc.). Fill `title:` with the user's name (ask if not obvious), set `created` and `modified` to the current ISO 8601 timestamp.
+
+For **minimal mode**, use the frontmatter-less template at `${CLAUDE_PLUGIN_ROOT}/templates/minimal/persona.md` — just section headers, no YAML.
+
+After the persona file is written, invoke `/partner-model bootstrap`. The bootstrap will detect the new persona and derive observations from it.
+
+**Use an existing persona file:**
+
+Ask the user for the path to their existing persona note. Copy or symlink it to the path resolved by `persona.path` (default `${vault_root}/Notes/me.md`). Then invoke `/partner-model bootstrap` — it will detect the persona and derive observations from it.
 
 **Skip:**
-Create an empty model file at the resolved partner model path with minimal content:
+
+Create an empty model file at the resolved partner-model path with minimal content:
 
 ```
 ---
 ---
 ```
 
-Also touch the partner model log file at the resolved log path so future consolidation has a target to append to.
+Also touch the partner-model log file at the resolved log path so future consolidation has a target to append to. No persona file is created; the partner model populates via real session observations only.
 
 ---
 

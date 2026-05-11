@@ -62,11 +62,12 @@ See [strict-mode-ontology.md](strict-mode-ontology.md) for what strict mode adds
 
 **Profile name:** A context identifier for your partner model (`work`, `personal`, `default`). If you only have one vault, use `default`. If you maintain separate vaults for work and personal use, name them accordingly — each profile gets its own consolidated model file.
 
-**Partner model seed:** How to initialize the partner model:
-- **From persona file** (recommended) — point to an existing persona note. The bootstrap derives initial observations from the declared facts.
-- **Skip** — start with an empty model and let observations accumulate through normal sessions.
+**Persona seed:** How to populate the persona file (`me.md`) — the declared-facts-about-you note that the partner-model bootstrap derives observations from:
+- **Build new via interview** (default) — short conversational interview (~5 questions: role, current focus, stakeholders, growth edges, outside-work context). Answers populate `me.md`.
+- **Use an existing persona file** — point to a persona you've already written elsewhere; it'll be copied into place.
+- **Skip** — no persona file. The partner model starts empty and populates from real session observations only.
 
-The partner model is observation-driven by design — it captures what the agent has observed about you, not what you've told it about yourself. There is no interview. If a persona file is available, the bootstrap infers observations from it (e.g., "Current role: Senior Staff Engineer" → "User is a senior staff engineer; assume technical depth"). See [partner-model-schema.md](partner-model-schema.md) for the full seed-source model.
+The interview builds the **persona layer** (declared facts about you). The partner model is a separate **behavioral layer** (observed patterns), built passively as you work. After brain-init writes your persona, it invokes `/partner-model bootstrap`, which reads the persona and derives initial observations from each declared fact. See [partner-model-schema.md](partner-model-schema.md) for the full seed-source model.
 
 After completing the questions, brain-init creates:
 - `.vault.toml` in the vault root

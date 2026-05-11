@@ -25,8 +25,9 @@ where `PARTNER_MODEL_DIR` is the parent directory of `$PARTNER_MODEL_PATH`.
 If `$PARTNER_MODEL_PATH` is not set, invoke `${CLAUDE_PLUGIN_ROOT}/scripts/detect-vault-config.sh` (with `$PWD` as the start directory). If it succeeds and prints a `.vault.toml` path:
 - Parse `.vault.toml` using `grep`/`awk` (be robust to comments and whitespace).
 - Read `partner_model.path` (default: `System/partner_model.md`) and `partner_model.log_path` (default: `System/logs/partner_model_log.jsonl`).
-- Resolve both paths relative to the vault root. The vault root is computed by resolving `vault.root` relative to the directory containing `.vault.toml`.
-- If `partner_model.profile` is set and not `"default"`, append the profile to the model filename: `partner_model.md` → `partner_model.${profile}.md`. The log path is NOT split by profile (logs are shared across profiles in v0.1).
+- Resolve both paths relative to the **vault root**. The vault root is computed as: if `vault.root` is absolute (starts with `/`), use it as-is; otherwise resolve `vault.root` relative to the directory containing `.vault.toml`. The convention `vault.root = "."` (the default) means the directory containing `.vault.toml` is the vault root.
+- If `partner_model.profile` is set and not `"default"` (default is `"default"` if unset), append the profile to the model filename: `partner_model.md` → `partner_model.${profile}.md`. The log path is NOT split by profile (logs are shared across profiles in v0.1).
+- **Do not create directories** under tier 2 — the vault structure is owned by the user. If the resolved log path's parent directory does not exist, fall back to **tier 3** (default).
 
 **3. Default fallback:**
 If neither of the above succeeds, use:
@@ -45,7 +46,7 @@ On session start, before doing ANYTHING else, read the consolidated model file. 
 
 After loading the consolidated model, check for a persona file:
 - If `$PERSONA_PATH` is set, read it.
-- Else, if `.vault.toml` has a `persona.path` key, resolve it relative to vault root and read it.
+- Else, if `.vault.toml` has a `persona.path` key, resolve it relative to vault root (using the same vault root calculation as in File Locations tier 2) and read it.
 
 If a persona file exists, treat it as **declared facts about the user** — role, focus areas, stakeholders, organizational context. These complement the **observed patterns** in the partner model. The persona informs interpretation: if the persona says "user is a senior staff engineer," assume technical depth even before you've observed it directly.
 

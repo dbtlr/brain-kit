@@ -80,7 +80,7 @@ profile = "work"
 
 | Key | Type | Default | Description |
 |---|---|---|---|
-| `strict` | boolean | `false` | When `true`, enforce the typed-note ontology. Skills apply typed frontmatter requirements and install typed-note-compatible templates. |
+| `strict` | boolean | `false` | When `true`, enforce the typed-note ontology. Skills apply typed frontmatter requirements and install structured typed-note templates. |
 
 ### What `strict` changes
 

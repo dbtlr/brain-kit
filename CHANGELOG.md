@@ -10,4 +10,4 @@
 - dev-log skill (init + write)
 - brain-init skill (bootstrap a vault)
 - .vault.toml config layer with auto-discovery
-- Minimal and strict (typed-note) modes
+- Minimal and strict modes with structured-mode templates

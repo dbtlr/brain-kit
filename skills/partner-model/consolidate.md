@@ -102,7 +102,7 @@ For each theme (in standard order), write a section with pattern bullets. Each b
 ```
 
 Guidelines for tone and style:
-- **Terse and declarative.** Write like the live model at `/Users/drew/vaults/myvault/System/partner_model.md` — no hedging, no padding, no "it seems that." State the pattern as a fact derived from observation.
+- **Terse and declarative.** No hedging, no padding, no "it seems that." State the pattern as a fact derived from observation.
 - **Bold lead-in** names the pattern at a glance; the rest of the sentence gives the content. A reader skimming bold text should get the map; a reader reading the full sentence gets the signal.
 - **Why lines are optional** but valuable when the pattern is non-obvious or when knowing the cause changes how you apply it.
 - **Don't over-explain.** If a pattern takes three sentences to state, it's probably two patterns.

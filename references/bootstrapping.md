@@ -55,7 +55,7 @@ Open Claude Code in that directory, then invoke the init skill:
 The skill will ask you three questions:
 
 **Mode:** Choose `strict` (recommended) or `minimal`.
-- Strict enforces the typed-note ontology — typed frontmatter, typed-note-compatible templates. Use this if you want full structure or plan to use structured-vault tooling.
+- Strict enforces the typed-note ontology — typed frontmatter, structured templates. Use this if you want full structure or plan to use structured-vault tooling.
 - Minimal enforces only the structural layout — no frontmatter required. Use this for a lightweight setup.
 
 See [strict-mode-ontology.md](strict-mode-ontology.md) for what strict mode adds, and [vault-config.md](vault-config.md) for the `mode.strict` config key.
@@ -133,7 +133,7 @@ Skills couldn't find a vault config by walking up from your current directory. R
 
 **Permission errors writing to vault**
 
-Check `.claude/settings.local.json` in your brain-kit directory. The controller's structured-vault integration pre-populates some permissions; you may need to add write permissions for your vault path. Specifically, `Bash(mkdir:...)`, `Write`, and `Edit` permissions for your vault root.
+Check `.claude/settings.local.json` in your brain-kit directory. Pre-populated permissions may be present; you may need to add write permissions for your vault path. Specifically, `Bash(mkdir:...)`, `Write`, and `Edit` permissions for your vault root.
 
 **Skill not triggering on `/brain-init` or other commands**
 

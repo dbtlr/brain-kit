@@ -42,7 +42,7 @@ Exit cleanly. Do NOT overwrite or modify the existing setup. Do not proceed to a
 
 Use AskUserQuestion to ask the user which mode they want:
 
-- **strict (recommended)** — typed-note-compatible typed-note ontology. Enforces typed notes, required frontmatter, and template discipline. Use if you want full typed-note rigor and structured-vault compatibility.
+- **strict (recommended)** — typed-note ontology. Enforces typed notes, required frontmatter, and template discipline. Use if you want full typed-note rigor and structured-vault compatibility.
 - **minimal** — loose conventions, no required frontmatter. Use for lightweight personal setups or experimentation.
 
 Default to **strict** if the user provides no answer.

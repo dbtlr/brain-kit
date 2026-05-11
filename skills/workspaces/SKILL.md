@@ -182,7 +182,7 @@ Report only. The user reviews the report and decides what to repair. Do not writ
 
 ## Confirmation Requirements
 
-**ALWAYS confirm before creating a workspace.** The creation confirmation rule is non-negotiable — per structured-vault convention, workspace creation is a significant structural action. Never create silently, even if the user's intent seems unambiguous.
+**ALWAYS confirm before creating a workspace.** The creation confirmation rule is non-negotiable — workspace creation is a significant structural action. Never create silently, even if the user's intent seems unambiguous.
 
 No confirmation is required for the audit operation — reading and reporting is non-destructive.
 

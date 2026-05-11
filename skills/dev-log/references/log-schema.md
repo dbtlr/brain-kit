@@ -102,9 +102,9 @@ Body sections are identical to minimal mode:
 
 ### Design Note: `type: log` vs `type: note, kind: log`
 
-Strict mode logs use `type: log` (a top-level type). This is intentionally inconsistent with `templates/strict/log.md`, which uses `type: note, kind: log` (the typed-note ontology). The discrepancy is inherited from an existing structured vault's dev-log behavior and preserved here for compatibility.
+Strict mode logs use `type: log` (a top-level type). This is intentionally inconsistent with `templates/strict/log.md`, which uses `type: note, kind: log` (the typed-note ontology). The discrepancy is inherited from the original dev-log behavior and preserved here for compatibility.
 
-**Decision for v0.1:** Default to `type: log` for written log files, matching structured-vault behavior. The template at `templates/strict/log.md` is for user-created notes that happen to be logs; dev-log skill entries are agent-generated session records with a different type hierarchy.
+**Decision for v0.1:** Default to `type: log` for written log files. The template at `templates/strict/log.md` is for user-created notes that happen to be logs; dev-log skill entries are agent-generated session records with a different type hierarchy.
 
 **Open question for v0.2:** Unify under `type: note, kind: log` across both the template and the skill, or formalize `type: log` as a distinct first-class type in the schema. Either path requires a migration decision.
 

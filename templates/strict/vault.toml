@@ -1,4 +1,4 @@
-# brain-kit strict-mode config (typed-note-compatible)
+# brain-kit strict-mode config (structured-vault-compatible)
 [vault]
 root = "."
 workspaces_dir = "Workspaces"

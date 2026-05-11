@@ -1,10 +1,10 @@
 # Strict mode ontology
 
-Strict mode (`mode.strict = true` in `.vault.toml`) enforces a typed-note ontology derived from a markdown vault system. The goal is typed-note-compatible structure: consistent frontmatter that enables cross-tool semantic search and entity resolution by external indexers.
+Strict mode (`mode.strict = true` in `.vault.toml`) enforces a typed-note ontology used by structured markdown vaults. The goal is consistent frontmatter that enables cross-tool semantic search and entity resolution by external indexers.
 
-In brain-kit v0.1, strict mode installs the ontology via templates and validates workspace notes. It does not enforce every type/kind value at write time — it documents the vocabulary so your notes are compatible with the full structured-vault toolchain.
+In brain-kit v0.1, strict mode installs the ontology via templates and validates workspace notes. It does not enforce every type/kind value at write time — it documents the vocabulary so your notes are compatible with structured-vault tooling.
 
-Enable strict mode if you want structured-vault parity. Use minimal mode for a lighter-weight setup. See [vault-config.md](vault-config.md) for the config key.
+Enable strict mode if you want full typed-note structure. Use minimal mode for a lighter-weight setup. See [vault-config.md](vault-config.md) for the config key.
 
 ---
 
@@ -146,7 +146,7 @@ Agent artifacts live in `{workspace}/agent-artifacts/` and are not treated as ca
 
 ## Reserved frontmatter: `document_id`
 
-`document_id` is a UUID v4 assigned by external indexers (the Vault Memory pipeline in structured-vault). If your notes have this field, **do not create, modify, or remove it**. Skills preserve it verbatim across rewrites.
+`document_id` is a UUID v4 assigned by external indexers. If your notes have this field, **do not create, modify, or remove it**. Skills preserve it verbatim across rewrites.
 
 Templates should not include `document_id`. It is added by the indexer, never by hand.
 
@@ -155,7 +155,7 @@ Templates should not include `document_id`. It is added by the indexer, never by
 ## When to use strict vs minimal
 
 **Use strict if:**
-- You want structured-vault compatibility — cross-tool entity resolution, semantic search, Vault Memory indexing
+- You want cross-tool entity resolution, semantic search, and external indexer support
 - You're maintaining a vault long-term and want consistent structure
 - You're sharing vault content with tools that expect typed notes
 

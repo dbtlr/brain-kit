@@ -28,7 +28,7 @@ Each entry in the log is one JSON object on its own line. The log file is append
 **`observation`** — a genuinely new pattern not covered by anything in the current model. Use this when you've noticed something that a fresh agent tomorrow would work differently knowing.
 
 ```jsonl
-{"ts": "2026-05-01T20:00:00Z", "session": "vault-inbox", "project": "structured-vault", "type": "observation", "pattern_ref": null, "text": "Strongly prefers concrete examples over abstract descriptions — asked for examples 3 times in one session."}
+{"ts": "2026-05-01T20:00:00Z", "session": "myvault-inbox", "project": "myvault", "type": "observation", "pattern_ref": null, "text": "Strongly prefers concrete examples over abstract descriptions — asked for examples 3 times in one session."}
 ```
 
 **`confirmation`** — an existing pattern held in a meaningfully different context. Not every confirmation is worth logging; only log when the new context adds signal (a new project type, a higher-stakes situation, etc.).
@@ -46,7 +46,7 @@ Each entry in the log is one JSON object on its own line. The log file is append
 **`calibration`** — something that caused friction that the model could have prevented. Bug reports against the model's predictions.
 
 ```jsonl
-{"ts": "2026-05-07T19:00:00Z", "session": "structured-vault-brainstorm", "project": "structured-vault", "type": "calibration", "pattern_ref": null, "text": "Jumped into implementation before discussion — user had to redirect. Model should flag that brainstorming sessions need discussion-first, not code-first."}
+{"ts": "2026-05-07T19:00:00Z", "session": "myvault-brainstorm", "project": "myvault", "type": "calibration", "pattern_ref": null, "text": "Jumped into implementation before discussion — user had to redirect. Model should flag that brainstorming sessions need discussion-first, not code-first."}
 ```
 
 ---
@@ -89,7 +89,7 @@ Each pattern is a bullet under its theme section. The format:
 ```markdown
 ## Communication
 
-- **Prefers concrete examples.** Asks for examples over abstract descriptions, especially when evaluating design options. (confirmed: norn-refactor, vault-inbox)
+- **Prefers concrete examples.** Asks for examples over abstract descriptions, especially when evaluating design options. (confirmed: norn-refactor, myvault-inbox)
 - **Terse answers signal flow state.** Short replies during brainstorming mean "keep going" not "I'm disengaged."
   - Why: Distinguishing flow-state terseness from confusion prevents unnecessary interruptions.
 ```

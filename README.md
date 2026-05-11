@@ -1,10 +1,10 @@
 # brain-kit
 
-> Portable second-brain skills for Claude Code. Typed-note-compatible, two-mode, vault-aware.
+> Portable second-brain skills for Claude Code. Two-mode, vault-aware, structured-vault-compatible.
 
 ## What is brain-kit?
 
-brain-kit packages a set of skills that let Claude Code build and maintain a personal knowledge layer in any markdown vault: a behavioral model of you (partner-model), a workspace contract (mini-vaults for each project), session dev logs, and a one-shot vault initializer (brain-init). It's a portable extraction of the patterns Drew Butler uses in his markdown vault, made reusable for any directory.
+brain-kit packages a set of skills that let Claude Code build and maintain a personal knowledge layer in any markdown vault: a behavioral model of you (partner-model), a workspace contract (mini-vaults for each project), session dev logs, and a one-shot vault initializer (brain-init). It's a portable, reusable set of patterns that work in any markdown directory.
 
 ## Why
 
@@ -17,7 +17,7 @@ brain-kit packages a set of skills that let Claude Code build and maintain a per
 ## Two modes
 
 - **Minimal** — loose conventions, no frontmatter requirements. Get going fast.
-- **Strict** — typed-note-compatible typed-note ontology with `type:`/`kind:` frontmatter. Use when you want full structure or interop with structured-vault tooling.
+- **Strict** — typed-note ontology with `type:`/`kind:` frontmatter. Use when you want full structure or interop with structured-vault tooling.
 
 Mode is chosen at init time and recorded in `.vault.toml`.
 
@@ -76,9 +76,9 @@ For schema validation (`scripts/validate-vault-config.sh`):
 
 Without these, validation is skipped silently. brain-kit works fine without them.
 
-## Structured-vault relationship
+## Origin
 
-brain-kit extracts and generalizes the partner-model, mini-vault workspaces, and dev-log patterns from an existing structured vault — a personal Obsidian vault running this stack natively. Structured-vault itself does not yet consume brain-kit; it runs the inline versions. Structured-vault migration to brain-kit is planned for a later release once the pilot validates the portable design.
+brain-kit extracts and generalizes the partner-model, mini-vault workspaces, and dev-log patterns from a personal Obsidian vault running this stack natively. The inline versions predate brain-kit; migration to the portable plugin form is planned for a later release once the pilot validates the portable design.
 
 ## Contributing
 

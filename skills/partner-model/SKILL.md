@@ -75,6 +75,8 @@ Look through these lenses (not as a template — as things to notice):
 
 At session end, append entries to the JSONL log file. Each entry is one line, one focused observation.
 
+The plugin's `Stop` hook fires once per session and prompts you to apply the filter to anything you noticed. **The expected outcome for most sessions is "nothing this session" — that's a feature, not a failure.** Only write entries that genuinely change how a future agent would work. Consolidation cleans up some noise but not all; the cheapest noise is the noise you never wrote.
+
 ### The Filter
 
 Before writing any entry, ask: **"Would a fresh agent, starting a new session tomorrow with no context about today, work differently if it knew this?"**

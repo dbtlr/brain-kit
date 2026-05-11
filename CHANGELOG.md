@@ -5,6 +5,7 @@
 ### Added
 - `brain-init` Step 10 now writes a vault-level `.claude/settings.local.json` with broad `Read`/`Write`/`Edit` permissions for `${vault_root}/**` and `Bash` permissions for the plugin's scripts and hooks. Future sessions working inside the vault auto-allow file operations without per-write prompting.
 - brain-init also ensures `.claude/settings.local.json` is gitignored at the vault root so machine-local permissions don't leak across machines.
+- `Stop` hook (`hooks/stop.sh`) prompts the agent once per session to apply the partner-model filter and write any observations that pass. Idempotent within a session via session-id marker (`/tmp/brain-kit-stop-${session_id}`) so subsequent stops in the same session pass through cleanly without infinite blocking. Silent no-op when no partner-model log path can be resolved (non-brain-kit context). The reason text emphasizes "no observations this session" as the expected outcome for most sessions — noise hurts the model.
 
 ### Changed
 - brain-init step numbering: previous Step 10 (Git commit) → Step 11, previous Step 11 (Print summary) → Step 12.

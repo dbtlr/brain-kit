@@ -4,8 +4,8 @@ kind: persona
 title: {{name}}
 aliases: []
 description:
-created: {{date}}
-modified: {{date}}
+created: {{date:YYYY-MM-DDTHH:mm}}
+modified: {{date:YYYY-MM-DDTHH:mm}}
 ---
 
 ## Current role

@@ -4,8 +4,8 @@ kind: workspace
 title:
 aliases: []
 description:
-created: {{date}}
-modified: {{date}}
+created: {{date:YYYY-MM-DDTHH:mm}}
+modified: {{date:YYYY-MM-DDTHH:mm}}
 ---
 
 # Workspace Name

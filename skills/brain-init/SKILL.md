@@ -175,7 +175,41 @@ Also touch the partner-model log file at the resolved log path so future consoli
 
 ---
 
-## Step 10: Git commit (if applicable)
+## Step 10: Write vault permissions
+
+Create `${vault_root}/.claude/settings.local.json` so future sessions working inside the vault auto-allow file operations without prompting per write. If the file already exists with other permissions, **merge** — add the brain-kit entries without removing existing ones.
+
+```bash
+mkdir -p "${vault_root}/.claude"
+```
+
+Content (substitute the resolved absolute `${vault_root}` everywhere):
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Read(${vault_root}/**)",
+      "Write(${vault_root}/**)",
+      "Edit(${vault_root}/**)",
+      "Bash(*/brain-kit/scripts/*.sh:*)",
+      "Bash(*/brain-kit/hooks/*.sh:*)"
+    ]
+  }
+}
+```
+
+The wildcards on the Bash entries cover both symlinked installs (`~/.claude/plugins/brain-kit/scripts/...`) and cached marketplace installs (`~/.claude/plugins/cache/.../brain-kit/scripts/...`).
+
+This grants broad vault file access. The user can tighten later by replacing `**` globs with narrower paths if desired.
+
+Also create a shared `${vault_root}/.claude/settings.json` (committed if vault is git-backed) containing only the SessionStart hook reference — atlas's pattern is to keep hooks in `settings.json` (shared) and permissions in `settings.local.json` (machine-local). For v0.1.x brain-kit relies on the plugin-level SessionStart hook, so `settings.json` here is optional; skip if not needed.
+
+Add `.claude/settings.local.json` to `${vault_root}/.gitignore` (create it if missing) so machine-local permissions don't leak across machines.
+
+---
+
+## Step 11: Git commit (if applicable)
 
 Check whether `${vault_root}` is inside a git repository:
 
@@ -186,7 +220,7 @@ git -C "${vault_root}" rev-parse --is-inside-work-tree 2>/dev/null
 **If inside a git repo:** Suggest the following command but do not run it automatically:
 
 ```bash
-git -C ${vault_root} add .vault.toml ${workspaces_dir} ${notes_dir} ${logs_dir} && git commit -m "chore: initialize brain-kit"
+git -C ${vault_root} add .vault.toml .gitignore ${workspaces_dir} ${notes_dir} ${logs_dir} && git commit -m "chore: initialize brain-kit"
 ```
 
 Let the user decide whether to commit. Present it as a suggestion only.
@@ -195,7 +229,7 @@ Let the user decide whether to commit. Present it as a suggestion only.
 
 ---
 
-## Step 11: Print summary
+## Step 12: Print summary
 
 After all steps complete, print:
 

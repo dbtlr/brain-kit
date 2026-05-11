@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+### Added
+- `brain-init` Step 10 now writes a vault-level `.claude/settings.local.json` with broad `Read`/`Write`/`Edit` permissions for `${vault_root}/**` and `Bash` permissions for the plugin's scripts and hooks. Future sessions working inside the vault auto-allow file operations without per-write prompting.
+- brain-init also ensures `.claude/settings.local.json` is gitignored at the vault root so machine-local permissions don't leak across machines.
+
+### Changed
+- brain-init step numbering: previous Step 10 (Git commit) → Step 11, previous Step 11 (Print summary) → Step 12. Git commit's `git add` now includes the newly created `.gitignore`.
+
 ## [0.1.1] - 2026-05-11
 
 ### Fixed

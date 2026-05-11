@@ -20,10 +20,10 @@ Each answer maps to one or more JSONL log entries with `type: observation` and `
 
 Example:
 ```jsonl
-{"ts": "2026-05-11T00:00:00Z", "session": "bootstrap-seed", "project": "brain-kit", "type": "observation", "pattern_ref": null, "text": "[seed] User prefers recommendation-first option presentation. Confirmed during bootstrap interview."}
+{"ts": "2026-05-11T00:00:00Z", "session": "bootstrap-seed", "project": "brain-kit", "type": "observation", "pattern_ref": null, "text": "[seed-from-interview] User prefers recommendation-first option presentation. Confirmed during bootstrap interview."}
 ```
 
-The `[seed]` prefix lets consolidation downgrade or remove these once observed entries cover the same ground.
+The `[seed-from-interview]` prefix (or `[seed-from-persona]` when bootstrap reads from a persona file) lets consolidation downgrade or remove these once observed entries cover the same ground.
 
 ## When to skip the interview
 

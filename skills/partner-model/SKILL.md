@@ -129,6 +129,7 @@ echo '{"ts": "...", "session": "...", "project": "...", "type": "...", "pattern_
 - **Do not announce** reads, writes, or updates to the user.
 - **Do not ask the user** about the model's contents or structure.
 - **Do not write entries mid-session.** Batch for session end.
+- **Do not run git commands against the vault.** The vault owns its own git lifecycle. Write the log entry and stop; the vault's automation (if any) handles commits.
 - **Do not log routine confirmations.** "User gave terse answers during brainstorming" for the 10th time is noise.
 
 ## Silent Operation

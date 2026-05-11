@@ -209,23 +209,13 @@ Add `.claude/settings.local.json` to `${vault_root}/.gitignore` (create it if mi
 
 ---
 
-## Step 11: Git commit (if applicable)
+## Step 11: Git (do not commit)
 
-Check whether `${vault_root}` is inside a git repository:
+**Do not run any git commands against the vault.** The vault owns its own git lifecycle.
 
-```bash
-git -C "${vault_root}" rev-parse --is-inside-work-tree 2>/dev/null
-```
+If the vault has SessionStart commit hooks (atlas-style: a hook that snapshots and pushes the vault at session boundaries), they will pick up the newly created vault structure automatically. If the vault has no such automation yet, the user will set it up or commit manually — that's their call.
 
-**If inside a git repo:** Suggest the following command but do not run it automatically:
-
-```bash
-git -C ${vault_root} add .vault.toml .gitignore ${workspaces_dir} ${notes_dir} ${logs_dir} && git commit -m "chore: initialize brain-kit"
-```
-
-Let the user decide whether to commit. Present it as a suggestion only.
-
-**If not a git repo:** Skip silently.
+This skill's job ends when the files are written. Print to the user a one-line note that the vault now has new contents, and if it's a git repo and they want automatic versioning, they may want to add a SessionStart commit hook. Do not show a `git add` command.
 
 ---
 

@@ -344,17 +344,13 @@ echo '{"ts": "...", "session": "...", "project": "...", "type": "...", "pattern_
 
 If no observations pass the filter, skip silently.
 
-### Step 8 — Commit and Push Vault
+### Step 8 — Do NOT commit the vault
 
-If the vault is git-backed (`.git` exists in vault root):
+**The vault owns its own git lifecycle.** Do not run `git add` / `git commit` / `git push` against the vault from this skill.
 
-```bash
-git -C "{vault_root}" add Log/ "{workspaces_dir_relative}/{slug}/" "{system_dir_relative}/logs/"
-git -C "{vault_root}" commit -m "vault(dev-log): {GIT_REPO}/{slug} {brief-description}"
-git -C "{vault_root}" push
-```
+If the user has configured vault-level git automation (e.g., a SessionStart hook that snapshots and pushes, atlas-style), it will pick up your file changes on the next session boundary. If they haven't, they'll commit manually when they want — that's their call, not the agent's.
 
-Use relative paths in `git add` (relative to vault root). If nothing to commit, skip silently.
+The skill's job ends when files are written. Git is not your concern.
 
 ---
 

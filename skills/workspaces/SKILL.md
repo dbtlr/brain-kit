@@ -95,17 +95,9 @@ Substitute template variables:
 
 Write the result to `{workspaces_dir}/{name}/{name}.md`.
 
-### Git suggestion
+### Git
 
-If `.git` exists in the vault root (check via `ls {vault_root}/.git`), print:
-
-```
-Tip: commit this new workspace when ready:
-  git add {workspaces_dir}/{name}/
-  git commit -m "feat(workspaces): add {name} workspace"
-```
-
-Do NOT auto-commit. The user may want to batch workspace creation with other changes.
+**Do not run any git commands.** The vault owns its own git lifecycle — if it has SessionStart commit hooks (atlas-style), they will pick up the new workspace at the next session boundary. If the user wants to commit manually, they will.
 
 ### Output
 

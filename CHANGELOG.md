@@ -7,7 +7,8 @@
 - brain-init also ensures `.claude/settings.local.json` is gitignored at the vault root so machine-local permissions don't leak across machines.
 
 ### Changed
-- brain-init step numbering: previous Step 10 (Git commit) → Step 11, previous Step 11 (Print summary) → Step 12. Git commit's `git add` now includes the newly created `.gitignore`.
+- brain-init step numbering: previous Step 10 (Git commit) → Step 11, previous Step 11 (Print summary) → Step 12.
+- **Skills do not run git commands against the vault.** The vault owns its own git lifecycle (atlas-style SessionStart commit hooks, or user-managed). Removed `dev-log write` Step 8 git commit/push, removed `workspaces create` git tip output, and rewrote `brain-init` Step 11 to make this explicit. `partner-model` SKILL.md "What NOT to do" gains an entry to match.
 
 ## [0.1.1] - 2026-05-11
 

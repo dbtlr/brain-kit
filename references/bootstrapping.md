@@ -63,9 +63,10 @@ See [strict-mode-ontology.md](strict-mode-ontology.md) for what strict mode adds
 **Profile name:** A context identifier for your partner model (`work`, `personal`, `default`). If you only have one vault, use `default`. If you maintain separate vaults for work and personal use, name them accordingly — each profile gets its own consolidated model file.
 
 **Partner model seed:** How to initialize the partner model:
-- **Run interview** (default) — 5-question behavioral interview that seeds initial observations
-- **From persona file** — point to an existing persona note to seed from
-- **Skip** — start with an empty model and populate it through normal sessions
+- **From persona file** (recommended) — point to an existing persona note. The bootstrap derives initial observations from the declared facts.
+- **Skip** — start with an empty model and let observations accumulate through normal sessions.
+
+The partner model is observation-driven by design — it captures what the agent has observed about you, not what you've told it about yourself. There is no interview. If a persona file is available, the bootstrap infers observations from it (e.g., "Current role: Senior Staff Engineer" → "User is a senior staff engineer; assume technical depth"). See [partner-model-schema.md](partner-model-schema.md) for the full seed-source model.
 
 After completing the questions, brain-init creates:
 - `.vault.toml` in the vault root

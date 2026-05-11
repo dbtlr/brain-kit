@@ -53,16 +53,18 @@ Each entry in the log is one JSON object on its own line. The log file is append
 
 ## Seed entry convention
 
-The bootstrap subcommand seeds the log with initial entries from an interview or a persona file. Seed entries are prefixed in the session field to distinguish them from observed entries:
+The bootstrap subcommand seeds the log with **inferred observations** derived from existing evidence. It never asks the user about preferences — observations are what the agent has seen, not what the user has declared. Seed entries are prefixed in the text field to distinguish them from observed entries:
 
-- `[seed-from-interview]` — seeded via the 5-question bootstrap interview
-- `[seed-from-persona]` — seeded from a hand-authored persona file
+- `[seed-from-persona]` — derived from a hand-authored persona file (declared facts about the user)
+- `[seed-from-cc-logs]` — derived from past Claude Code conversation logs (observed behavior across prior sessions; opt-in via `mode.crawl_cc_logs`; v0.2)
 
 ```jsonl
-{"ts": "2026-01-15T10:00:00Z", "session": "[seed-from-interview]", "project": "bootstrap", "type": "observation", "pattern_ref": null, "text": "Works primarily in TypeScript and Go. Prefers functional patterns where the language supports them."}
+{"ts": "2026-01-15T10:00:00Z", "session": "bootstrap-seed-2026-01-15T10:00:00Z", "project": "myvault", "type": "observation", "pattern_ref": null, "text": "[seed-from-persona] User is a senior staff engineer; assume technical depth and systems thinking."}
 ```
 
 Seed entries are downgraded during consolidation once real observed entries cover the same ground. After 5+ real sessions, seed entries that remain unchallenged are either promoted to canonical patterns or dropped.
+
+See `skills/partner-model/references/seed-sources.md` for the full sourcing model and rationale.
 
 ---
 
@@ -124,7 +126,7 @@ bootstrap  →  log observations  →  consolidate  →  refine
    └──────────────── (repeat every few sessions) ──────┘
 ```
 
-1. **Bootstrap:** Seed the log with initial entries via interview or persona file.
+1. **Bootstrap:** Seed the log with initial entries inferred from a persona file (or optionally from past Claude Code conversation logs).
 2. **Observe:** Each session end, the partner-model skill appends focused entries to the log.
 3. **Consolidate:** Run `/partner-model consolidate` monthly or after a significant accumulation of new observations. It rewrites the model from the log.
 4. **Refine:** The model improves over time as corrections challenge prior entries and confirmations strengthen patterns.

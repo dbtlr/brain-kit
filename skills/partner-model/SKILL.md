@@ -118,7 +118,7 @@ echo '{"ts": "...", "session": "...", "project": "...", "type": "...", "pattern_
 
 ## Subcommands
 
-- **bootstrap** — first-run setup: seeds the log with initial observations via a short interview (or from the persona file). See `bootstrap.md`.
+- **bootstrap** — first-run setup: derives initial observations from a persona file (and optionally from past Claude Code conversation logs). Never asks the user about preferences. See `bootstrap.md` and `references/seed-sources.md`.
 - **consolidate** — reads the JSONL log and rewrites the consolidated model markdown. Use the `consolidate` subcommand (see `consolidate.md`).
 
 ## What NOT to Do

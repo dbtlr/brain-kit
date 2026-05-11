@@ -78,11 +78,12 @@ This value is substituted into the vault config as the partner model profile ide
 Ask the user how they want to seed the partner model:
 
 > Seed the partner model now? Choices:
-> - **Run interview** — 5-question behavioral interview via partner-model bootstrap
-> - **From persona file** — point to an existing persona note (you'll be asked for path)
-> - **Skip** — initialize empty model, populate later
+> - **From persona file** (recommended) — point to an existing persona note (you'll be asked for path). The bootstrap infers initial observations from the declared facts.
+> - **Skip** — initialize an empty model and let observations accumulate through normal sessions.
 
-Default: **Run interview**.
+Default: **From persona file** if the user mentions they have one, else **Skip**.
+
+The partner model is observation-driven; there is no interview. See `skills/partner-model/references/seed-sources.md` for the sourcing model.
 
 Record the user's choice. Do not take action yet — persona seeding happens in Step 9.
 
@@ -146,11 +147,8 @@ Skip this step entirely for minimal mode.
 
 Take action based on the choice from Step 5:
 
-**Run interview:**
-Invoke `/partner-model bootstrap`. The bootstrap subcommand handles the 5-question behavioral interview and seeds the partner model. Wait for it to complete before proceeding.
-
 **From persona file:**
-Ask the user for the path to their existing persona note. Copy or symlink it to `${vault_root}/Notes/me.md` (or wherever `persona.path` resolves in the vault config). Then invoke `/partner-model bootstrap` — it will detect the existing persona and seed from it.
+Ask the user for the path to their existing persona note. Copy or symlink it to `${vault_root}/Notes/me.md` (or wherever `persona.path` resolves in the vault config). Then invoke `/partner-model bootstrap` — it will detect the persona and derive observations from it.
 
 **Skip:**
 Create an empty model file at the resolved partner model path with minimal content:
@@ -223,4 +221,4 @@ Do **not** auto-commit git history. Step 10 is always a suggestion, never automa
 - Don't copy templates outside `${vault_root}/${system_dir}/Templates/`
 - Don't auto-create workspaces — that is the workspaces skill's job (`/workspaces create`)
 - Don't push or amend git history
-- Don't reimplement partner-model bootstrap logic — call `/partner-model bootstrap` and let it handle the interview
+- Don't reimplement partner-model bootstrap logic — call `/partner-model bootstrap` and let it handle the seeding from persona

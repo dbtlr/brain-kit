@@ -203,7 +203,7 @@ The wildcards on the Bash entries cover both symlinked installs (`~/.claude/plug
 
 This grants broad vault file access. The user can tighten later by replacing `**` globs with narrower paths if desired.
 
-Also create a shared `${vault_root}/.claude/settings.json` (committed if vault is git-backed) containing only the SessionStart hook reference — atlas's pattern is to keep hooks in `settings.json` (shared) and permissions in `settings.local.json` (machine-local). For v0.1.x brain-kit relies on the plugin-level SessionStart hook, so `settings.json` here is optional; skip if not needed.
+A shared `${vault_root}/.claude/settings.json` is optional. The brain-kit plugin already provides its SessionStart hook at the plugin level, so the vault doesn't need to register one for the partner-model auto-load. If the user wants vault-specific hooks later, they add them here; brain-init doesn't write this file.
 
 Add `.claude/settings.local.json` to `${vault_root}/.gitignore` (create it if missing) so machine-local permissions don't leak across machines.
 
@@ -213,9 +213,9 @@ Add `.claude/settings.local.json` to `${vault_root}/.gitignore` (create it if mi
 
 **Do not run any git commands against the vault.** The vault owns its own git lifecycle.
 
-If the vault has SessionStart commit hooks (atlas-style: a hook that snapshots and pushes the vault at session boundaries), they will pick up the newly created vault structure automatically. If the vault has no such automation yet, the user will set it up or commit manually — that's their call.
+If the vault has external git automation (a periodic auto-commit job, a coordinator agent, or any other mechanism the user has set up), it will pick up the newly created vault structure on its own schedule. If the vault has no such automation yet, the user will set it up or commit manually — that's their call, not this skill's.
 
-This skill's job ends when the files are written. Print to the user a one-line note that the vault now has new contents, and if it's a git repo and they want automatic versioning, they may want to add a SessionStart commit hook. Do not show a `git add` command.
+This skill's job ends when the files are written. Print to the user a one-line note that the vault now has new contents; if they want automatic versioning and don't already have it, they'll set up their preferred mechanism (periodic job, coordinator agent, manual commits). Do not show a `git add` command.
 
 ---
 

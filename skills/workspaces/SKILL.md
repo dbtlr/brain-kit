@@ -97,7 +97,7 @@ Write the result to `{workspaces_dir}/{name}/{name}.md`.
 
 ### Git
 
-**Do not run any git commands.** The vault owns its own git lifecycle — if it has SessionStart commit hooks (atlas-style), they will pick up the new workspace at the next session boundary. If the user wants to commit manually, they will.
+**Do not run any git commands.** The vault owns its own git lifecycle, managed externally to this session. Whatever commit cadence the vault has — periodic, coordinator-driven, or manual — will pick up the new workspace on its own.
 
 ### Output
 

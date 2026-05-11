@@ -348,7 +348,7 @@ If no observations pass the filter, skip silently.
 
 **The vault owns its own git lifecycle.** Do not run `git add` / `git commit` / `git push` against the vault from this skill.
 
-If the user has configured vault-level git automation (e.g., a SessionStart hook that snapshots and pushes, atlas-style), it will pick up your file changes on the next session boundary. If they haven't, they'll commit manually when they want — that's their call, not the agent's.
+The vault's commit cadence is managed externally to any Claude Code session — by a periodic job, an external coordinator agent, or the user themselves. Whatever the mechanism, it will pick up your file changes on its own schedule. Don't race it.
 
 The skill's job ends when files are written. Git is not your concern.
 

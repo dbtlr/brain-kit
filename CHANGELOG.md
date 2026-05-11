@@ -8,7 +8,7 @@
 
 ### Changed
 - brain-init step numbering: previous Step 10 (Git commit) → Step 11, previous Step 11 (Print summary) → Step 12.
-- **Skills do not run git commands against the vault.** The vault owns its own git lifecycle (atlas-style SessionStart commit hooks, or user-managed). Removed `dev-log write` Step 8 git commit/push, removed `workspaces create` git tip output, and rewrote `brain-init` Step 11 to make this explicit. `partner-model` SKILL.md "What NOT to do" gains an entry to match.
+- **Skills do not run git commands against the vault.** The vault owns its own git lifecycle, managed externally to any Claude Code session (periodic auto-commit, an external coordinator agent, or user-managed — the mechanism varies). Removed `dev-log write` Step 8 git commit/push, removed `workspaces create` git tip output, and rewrote `brain-init` Step 11 to make this explicit. `partner-model` SKILL.md "What NOT to do" gains an entry to match.
 
 ## [0.1.1] - 2026-05-11
 
